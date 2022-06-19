@@ -1,7 +1,8 @@
 'use strict';
 
 const { Sequelize, DataTypes } = require('sequelize');
-const personSchema = require('./person.schema');
+const userSchema = require('./user');
+const userMessageSchema = require('./userMsg');
 
 const DATABASE_URL =
   process.env.NODE_ENV === 'test'
@@ -9,6 +10,7 @@ const DATABASE_URL =
     : process.env.DATABASE_URL || 'postgres://localhost:5432/lab3-api-map';
 
 const sequelize = new Sequelize(DATABASE_URL);
-const PersonModel = personSchema(sequelize, DataTypes);
+const UserModel = userSchema(sequelize, DataTypes);
+const UserMessageModel = userMessageSchema(sequelize, DataTypes);
 
-module.exports = { sequelize, PersonModel };
+module.exports = { sequelize, UserModel, UserMessageModel };
